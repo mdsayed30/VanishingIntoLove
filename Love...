@@ -1,0 +1,37 @@
+// VanishingIntoLove - Modified for Anusha
+document.onmousedown = (e) => {
+    getHeart(e);
+};
+
+const inputField = document.getElementById('inputField');
+const textToType = "Anusha i love you 💛";  // Changed name and emoji
+const typingSpeed = 100;
+
+let charIndex = 0;
+function typeText() {
+    if (charIndex < textToType.length) {
+        inputField.value += textToType.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeText, typingSpeed);
+    }
+    if(inputField.value.length == textToType.length) {
+        setTimeout(() => {
+            document.querySelector(".buttonLove").style.transform = "translateY(0%)";
+            document.querySelector(".cricleBtn").style.transform = "scale(0.1)";
+        }, 1000);
+        setTimeout(() => {
+            document.querySelector(".cricleBtn").style.transform = "scale(1)";
+        }, 2000);
+    }
+}
+
+function getHeart(e) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = e.clientX + "px";
+    heart.style.top = e.clientY + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 1000);
+}
+
+window.onload = function()
